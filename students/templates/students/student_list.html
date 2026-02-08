@@ -1,0 +1,61 @@
+{% extends 'students/base.html'%}
+
+{% block title %}Список студентов{% endblock %}
+
+{% block content %}
+{% include 'students/header.html' %}
+<h2>Список студентов</h2>
+ <ul class="list-group">
+        {% for student in students %}
+            <li class="list-group-item">
+                {{ student.first_name }} {{ student.last_name }} - {{ student.year }}
+                {% if perms.students.can_promote_student %}
+                <a href="{% url 'promote_student' %}">Перевести студента</a>
+                {% endif %}
+                {% if perms.students.can_expel_student %}
+                <a href="{% url 'expel_student' %}">Исключить студента</a>
+                {% endif %}
+            </li>
+     {% endfor %}
+{% endblock %}
+
+<!--<html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Список студентов</title>-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="/static/css/bootstrap.min.css">&ndash;&gt;-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container mt-5">-->
+<!--    <h1>Список студентов</h1>-->
+<!--    <ul class="list-group">-->
+<!--        {% for student in students %}-->
+<!--            <li class="list-group-item d-flex justify-content-between align-items-center-->
+<!--            {% if student.year == 'first-year' %} list-group-item-primary-->
+<!--            {% elif student.year == 'second-year' %} list-group-item-success-->
+<!--            {% elif student.year == 'third-year' %} list-group-item-warning-->
+<!--            {% elif student.year == 'fourth-year' %} list-group-item-danger-->
+<!--            {% endif %}">-->
+<!--                {{ student.first_name }} {{ student.last_name }}-->
+<!--                <span class="badge bg-primary rounded-pill">-->
+<!--                    {% if student.year == "first-year" %}-->
+<!--                        Первый курс-->
+<!--                    {% elif student.year == "second-year" %}-->
+<!--                        Второй курс-->
+<!--                    {% elif student.year == "third-year" %}-->
+<!--                        Третий курс-->
+<!--                    {% elif student.year == "fourth-year" %}-->
+<!--                        Четвертый курс-->
+<!--                    {% endif %}-->
+<!--                </span>-->
+<!--            </li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--</div>-->
+<!--<script src="/static/js/bootstrap.bundle.min.js"> </script>-->
+<!--&lt;!&ndash;<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>&ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->

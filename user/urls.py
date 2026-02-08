@@ -1,0 +1,12 @@
+from django.urls import path, include
+# from .views import book_detail, books_list
+from .views import RegisterView
+from django.contrib.auth.views import LogoutView, LoginView
+
+app_name = 'user'
+
+urlpatterns = [
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(next_page='library:books_list'), name='logout'),
+]
