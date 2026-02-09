@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import sys
+
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -155,12 +157,17 @@ LOGIN_REDIRECT_URL = 'library:books_list'
 LOGIN_URL = 'user:login'
 LOGOUT_REDIRECT_URL = 'library:books_list'
 
-
-
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': 'redis://redis:6379/1',
     }
 }
+
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / 'test_db.sqlite3',
+        }
+    }
