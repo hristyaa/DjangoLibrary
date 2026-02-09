@@ -6,17 +6,17 @@ from .models import Author, Book
 
 class ModelTests(TestCase):
     def setUp(self):
-        self.author = Author.objects.create(first_name='John', last_name='Doe')
+        self.author = Author.objects.create(first_name="John", last_name="Doe")
         self.book = Book.objects.create(
-            title='Test Book',
+            title="Test Book",
             author=self.author,
         )
 
     def test_author_str(self):
-        self.assertEqual(str(self.author), 'John')
+        self.assertEqual(str(self.author), "John")
 
     def test_book_str(self):
-        self.assertEqual(str(self.book), 'Test Book')
+        self.assertEqual(str(self.book), "Test Book")
 
     def test_book_author_relationship(self):
         self.assertEqual(self.book.author, self.author)

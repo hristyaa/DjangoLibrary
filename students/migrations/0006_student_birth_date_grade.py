@@ -7,21 +7,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('students', '0005_alter_student_options'),
+        ("students", "0005_alter_student_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='student',
-            name='birth_date',
+            model_name="student",
+            name="birth_date",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.CreateModel(
-            name='Grade',
+            name="Grade",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('subject', models.CharField(max_length=100)),
-                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='students.student')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("subject", models.CharField(max_length=100)),
+                (
+                    "student",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="students.student",
+                    ),
+                ),
             ],
         ),
     ]

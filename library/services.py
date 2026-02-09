@@ -1,4 +1,5 @@
-from .models import Book, Review
+from .models import Review
+
 
 class BookService:
 
@@ -22,5 +23,3 @@ class BookService:
             return None
 
         return average_rating >= threshold
-
-    

@@ -1,11 +1,12 @@
 from .models import Student, Grade
 
+
 class StudentService:
 
     @staticmethod
     def get_full_name(student_id):
         student = Student.objects.get(id=student_id)
-        return f'{student.first_name} {student.last_name}'
+        return f"{student.first_name} {student.last_name}"
 
     @staticmethod
     def calculate_average_grade(student_id):

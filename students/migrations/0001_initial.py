@@ -7,22 +7,42 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=10, verbose_name='Имя')),
-                ('last_name', models.CharField(max_length=10, verbose_name='Фамилия')),
-                ('year', models.CharField(choices=[('first-year', ' Первый курс'), ('second-year', 'Второй курс'), ('third-year', 'Третий курс'), ('fourth-year', 'Четвертый курс')], default='first-year', max_length=11, verbose_name='Курс')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=10, verbose_name="Имя")),
+                ("last_name", models.CharField(max_length=10, verbose_name="Фамилия")),
+                (
+                    "year",
+                    models.CharField(
+                        choices=[
+                            ("first-year", " Первый курс"),
+                            ("second-year", "Второй курс"),
+                            ("third-year", "Третий курс"),
+                            ("fourth-year", "Четвертый курс"),
+                        ],
+                        default="first-year",
+                        max_length=11,
+                        verbose_name="Курс",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'студент',
-                'verbose_name_plural': 'студенты',
-                'ordering': ['last_name'],
+                "verbose_name": "студент",
+                "verbose_name_plural": "студенты",
+                "ordering": ["last_name"],
             },
         ),
     ]

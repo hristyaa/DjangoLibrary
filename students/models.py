@@ -1,8 +1,3 @@
-from cProfile import Profile
-
-from django.db import models
-
-# Create your models here.
 from django.db import models
 
 
@@ -23,9 +18,12 @@ class Group(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'группа'
-        verbose_name_plural = 'группы'
-        ordering = ['name',]
+        verbose_name = "группа"
+        verbose_name_plural = "группы"
+        ordering = [
+            "name",
+        ]
+
 
 class Student(models.Model):
     # first_name = models.CharField(max_length=150, verbose_name='Имя')
@@ -56,37 +54,45 @@ class Student(models.Model):
     #     ordering = ['last_name']
     #     db_table = 'custom_table_name'
 
-
-    FIRST_YEAR = 'first-year'
-    SECOND_YEAR = 'second-year'
-    THIRD_YEAR = 'third-year'
-    FOURTH_YEAR = 'fourth-year'
+    FIRST_YEAR = "first-year"
+    SECOND_YEAR = "second-year"
+    THIRD_YEAR = "third-year"
+    FOURTH_YEAR = "fourth-year"
 
     YEAR_IN_SCHOOL_CHOICES = [
-        (FIRST_YEAR, ' Первый курс'),
-        (SECOND_YEAR, 'Второй курс'),
-        (THIRD_YEAR, 'Третий курс'),
-        (FOURTH_YEAR, 'Четвертый курс'),
+        (FIRST_YEAR, " Первый курс"),
+        (SECOND_YEAR, "Второй курс"),
+        (THIRD_YEAR, "Третий курс"),
+        (FOURTH_YEAR, "Четвертый курс"),
     ]
 
-    first_name = models.CharField(max_length=10, verbose_name='Имя')
-    last_name = models.CharField(max_length=10, verbose_name='Фамилия')
+    first_name = models.CharField(max_length=10, verbose_name="Имя")
+    last_name = models.CharField(max_length=10, verbose_name="Фамилия")
     email = models.EmailField()
-    year = models.CharField(max_length=11, choices=YEAR_IN_SCHOOL_CHOICES, default=FIRST_YEAR, verbose_name='Курс')
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='students', null=True, blank=True)
+    year = models.CharField(
+        max_length=11,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        default=FIRST_YEAR,
+        verbose_name="Курс",
+    )
+    group = models.ForeignKey(
+        Group, on_delete=models.CASCADE, related_name="students", null=True, blank=True
+    )
     enrollment_date = models.DateField()
     birth_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
-        verbose_name = 'студент'
-        verbose_name_plural = 'студенты'
-        ordering = ['last_name',]
+        verbose_name = "студент"
+        verbose_name_plural = "студенты"
+        ordering = [
+            "last_name",
+        ]
         permissions = [
-            ('can_promote_student', 'Can promote student'),
-            ('can_expel_student', 'Can expel student'),
+            ("can_promote_student", "Can promote student"),
+            ("can_expel_student", "Can expel student"),
         ]
 
 
@@ -96,5 +102,4 @@ class Grade(models.Model):
     score = models.FloatField
 
     def __str__(self):
-        return f'{self.subject}: {self.score}'
-
+        return f"{self.subject}: {self.score}"
